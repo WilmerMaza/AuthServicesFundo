@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // Compila a una versión moderna de ECMAScript que es compatible con versiones recientes de Node.js.
+    "module": "CommonJS", // Node.js usa CommonJS, por lo que debes ajustar esto para asegurar compatibilidad.
+    "outDir": "./dist", // Especifica el directorio de salida donde se colocarán los archivos JS compilados.
+    "rootDir": "./src", // Especifica el directorio raíz donde se encuentran los archivos TS.
+    "strict": true, // Activa todas las opciones estrictas de chequeo de tipo.
+    "esModuleInterop": true, // Permite la interoperabilidad de importación/exportación de ES6 con módulos CommonJS.
+    "skipLibCheck": true, // Omite la verificación de tipo en todas las declaraciones de las bibliotecas.
+    "forceConsistentCasingInFileNames": true, // Obliga a que los nombres de archivos sean consistentes en cuanto a mayúsculas y minúsculas.
+    "moduleResolution": "node", // Utiliza la estrategia de resolución de módulos de Node.js.
+    "resolveJsonModule": true, // Permite la carga de módulos JSON con importaciones.
+    "lib": [
+      "ES2020"
+    ], // Especifica las librerías de definiciones de tipos de características de JavaScript que el proyecto usará.
+    "noImplicitReturns": true, // Asegura que todas las funciones retornen un valor apropiadamente o no retornen nada.
+    "noUnusedLocals": true, // Reporta errores en variables locales que no se usen.
+    "noUnusedParameters": true ,// Reporta errores en parámetros de funciones que no se usen.,
+    "sourceMap": true
+
+  },
+  "include": [
+    "src/**/*"
+  ], // Incluye todos los archivos en el directorio src y subdirectorios.
+  "exclude": [
+    "node_modules",
+    "dist"
+  ] // Excluye la carpeta node_modules y dist para mejorar el rendimiento del compilador.
+}
