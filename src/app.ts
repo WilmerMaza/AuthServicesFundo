@@ -8,8 +8,22 @@ import route from "./routes/authRoutes";
 dotenv.config();
 const app = express();
 const port = PORT;
+const allowedOrigins = ["http://tu-api-gateway.com", "*"];
 
-app.use(cors());
+const corsOptions: cors.CorsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin!)) {
+      callback(null, true);
+    } else if (allowedOrigins.includes("*")) {
+      // Permitir todas las solicitudes si el origen es '*'
+      callback(null, true);
+    } else {
+      callback(new Error("Acceso no permitido por CORS"));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 mongoose
