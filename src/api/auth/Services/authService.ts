@@ -28,36 +28,17 @@ export const loginHall = async ({
 }: RequestHallLogin): Promise<boolean> => {
   const resposeHall = await findHall(hall);
 
-  if (resposeHall === null) throw "Not authorized or Hall does not exist";
+  if (resposeHall === null) return false;
 
   return await switchPlatform(platform, documento, resposeHall);
 };
 
 async function switchPlatform(
   platform: string,
-  documento: string | undefined,
+  documento: string,
   resposeHall: IHall
 ): Promise<boolean> {
-  var auth: boolean = false;
-
-  switch (platform) {
-    case "chronometer":
-      if (documento) {
-        auth = await validPerson(documento, platform, resposeHall);
-      }
-
-      break;
-    case "Board":
-      break;
-    case "mobile":
-      break;
-    case "RegistrationPlatform":
-      break;
-
-    default:
-      break;
-  }
-  return auth;
+  return await validPerson(documento, platform as keyof IHall, resposeHall);
 }
 
 async function validPerson(
@@ -69,8 +50,8 @@ async function validPerson(
 
   return Array.isArray(platformData)
     ? platformData.some(
-        (person: IPerson) => person.document === document && !person.isActive
-      )
+      (person: IPerson) => person.document === document && !person.isActive
+    )
     : platformData.document === document && !platformData.isActive;
 }
 

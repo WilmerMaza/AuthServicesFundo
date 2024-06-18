@@ -1,7 +1,7 @@
 import Joi from "joi";
 
 export interface RequestHallLogin {
-  documento?: string;
+  documento: string;
   hall: string;
   platform:string;
 }
